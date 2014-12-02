@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5206A5E41A2E0E3A00C04B02 /* CardMatchingGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 5206A5E31A2E0E3A00C04B02 /* CardMatchingGame.m */; };
 		521C1A321A260790004EAF91 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 521C1A311A260790004EAF91 /* main.m */; };
 		521C1A351A260790004EAF91 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 521C1A341A260790004EAF91 /* AppDelegate.m */; };
 		521C1A381A260790004EAF91 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 521C1A371A260790004EAF91 /* ViewController.m */; };
@@ -31,6 +32,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5206A5E21A2E0E3A00C04B02 /* CardMatchingGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardMatchingGame.h; sourceTree = "<group>"; };
+		5206A5E31A2E0E3A00C04B02 /* CardMatchingGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardMatchingGame.m; sourceTree = "<group>"; };
 		521C1A2C1A260790004EAF91 /* Machismo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Machismo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		521C1A301A260790004EAF91 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		521C1A311A260790004EAF91 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -72,9 +75,11 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		521C1A231A260790004EAF91 = {
+		5206A5E11A2E08D900C04B02 /* model */ = {
 			isa = PBXGroup;
 			children = (
+				5206A5E21A2E0E3A00C04B02 /* CardMatchingGame.h */,
+				5206A5E31A2E0E3A00C04B02 /* CardMatchingGame.m */,
 				52B666301A2755B000A5A829 /* Card.h */,
 				52B666311A2755B000A5A829 /* Card.m */,
 				52B666331A2757AB00A5A829 /* Deck.h */,
@@ -83,6 +88,14 @@
 				52B666371A275C6900A5A829 /* PlayingCard.m */,
 				52B666391A2765AB00A5A829 /* PlayingCardDeck.h */,
 				52B6663A1A2765AB00A5A829 /* PlayingCardDeck.m */,
+			);
+			name = model;
+			sourceTree = "<group>";
+		};
+		521C1A231A260790004EAF91 = {
+			isa = PBXGroup;
+			children = (
+				5206A5E11A2E08D900C04B02 /* model */,
 				521C1A2E1A260790004EAF91 /* Machismo */,
 				521C1A481A260791004EAF91 /* MachismoTests */,
 				521C1A2D1A260790004EAF91 /* Products */,
@@ -243,6 +256,7 @@
 				52B666351A2757AB00A5A829 /* Deck.m in Sources */,
 				521C1A381A260790004EAF91 /* ViewController.m in Sources */,
 				521C1A351A260790004EAF91 /* AppDelegate.m in Sources */,
+				5206A5E41A2E0E3A00C04B02 /* CardMatchingGame.m in Sources */,
 				52B6663B1A2765AB00A5A829 /* PlayingCardDeck.m in Sources */,
 				521C1A321A260790004EAF91 /* main.m in Sources */,
 				52B666321A2755B000A5A829 /* Card.m in Sources */,
