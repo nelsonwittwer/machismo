@@ -36,6 +36,27 @@
 
 + (NSUInteger)maxRank { return [[self rankStrings] count]-1; }
 
+- (bool) cardMatchesSuit: (PlayingCard *)otherCard {
+    return [self.suit isEqualToString:otherCard.suit];
+}
+
+- (bool) cardMatchesRank: (PlayingCard *)otherCard {
+    return self.rank == otherCard.rank;
+}
+
+- (int)scoreForMatch:(PlayingCard *)otherCard
+{
+    int score = 0;
+    
+    if ([self cardMatchesRank:otherCard]){
+        score = 4;
+    } else if ([self cardMatchesSuit:otherCard]) {
+        score = 1;
+    }
+    
+    return score;
+}
+
 - (NSString *)contents
 {
     NSArray *rankStrings = [PlayingCard rankStrings];

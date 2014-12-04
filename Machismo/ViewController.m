@@ -15,6 +15,7 @@
 @property (nonatomic) int flipCount;
 @property (nonatomic, strong) Deck *deck;
 @property (nonatomic, strong) CardMatchingGame *game;
+@property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
 @end
 
@@ -38,7 +39,7 @@
 
 - (IBAction)touchCardButton:(UIButton *)sender
 {
-    int cardIndex = [self.cardButtons indexOfObject:sender];
+    NSUInteger cardIndex = [self.cardButtons indexOfObject:sender];
     [self.game chooseCardAtIndex:cardIndex];
     [self updateUI];
 }
@@ -46,23 +47,25 @@
 - (void) updateUI
 {
     for (UIButton *cardButton in self.cardButtons){
-        int cardIndex = [self.cardButtons indexofObject:cardButton];
+        NSUInteger cardIndex = [self.cardButtons indexOfObject:cardButton];
         Card *card = [self.game cardAtIndex:cardIndex];
         [cardButton setTitle: [self titleForCard:card]
                     forState:UIControlStateNormal];
         [cardButton setBackgroundImage: [self backgroundImageForCard:card]
                               forState:UIControlStateNormal];
+        cardButton.enabled = !card.matched;
     }
+    self.scoreLabel.text = [NSString stringWithFormat:@"Score: %ld", self.game.score];
 }
 
 - (NSString *) titleForCard: (Card *)card
 {
-    return card.isChosen ? card.contents : @"";
+    return card.chosen ? card.contents : @"";
 }
 
 - (UIImage *) backgroundImageForCard: (Card *) card
 {
-    return [UIImage imageNamed:card.isChosen ? @"cardfront" : @"cardback"];
+    return [UIImage imageNamed:card.chosen ? @"cardfront" : @"cardback"];
 }
 
 @end

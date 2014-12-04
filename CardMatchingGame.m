@@ -8,7 +8,6 @@
 
 #import "CardMatchingGame.h"
 
-static const int MISMATCH_PENALTY = 2;
 static const int MATCH_BONUS = 4;
 static const int COST_TO_CHOOSE = 1;
 
@@ -54,29 +53,42 @@ static const int COST_TO_CHOOSE = 1;
 {
     Card *card = [self cardAtIndex:index];
     
-    if (!card.isMatched) {
-        if (card.isChosen) {
+    if (!card.matched) {
+        if (card.chosen) {
             card.chosen = NO;
         } else {
-            // match against another card
-            for  (Card *otherCard in self.cards) {
-                if (otherCard.isChosen && !otherCard.isMatched) {
-                    int matchScore = [card match:@[otherCard]];
-                    if (matchScore) {
-                        self.score += matchScore * MATCH_BONUS;
-                        card.matched = YES;
-                        otherCard.matched = YES;
-                    } else {
-                        self.score -= MISMATCH_PENALTY;
-                        otherCard.chosen = NO;
-                    }
-                    break;
-                }
-            }
-            self.score -= COST_TO_CHOOSE;
-            card.chosen = YES;
+            Card *bestMatch = [self findBestMatchingCard:card];
+            [self updateGameForCard:card andMatchedCard:bestMatch];
         }
     }
+}
+
+- (Card *) findBestMatchingCard:(Card *) card
+{
+    Card *bestMatch = [self.cards firstObject];
+    
+    for (Card * otherCard in self.cards){
+        if ([card scoreForMatch:otherCard] > [card scoreForMatch:bestMatch]) {
+            bestMatch = otherCard;
+        }
+    }
+    
+    return bestMatch;
+}
+
+- (void) updateGameForCard: (Card *)card andMatchedCard:(Card *) bestMatch {
+    
+    int scoreForMatchingCards = [card scoreForMatch:bestMatch];
+    
+    if (scoreForMatchingCards > 0) {
+        self.score += scoreForMatchingCards * MATCH_BONUS;
+        bestMatch.matched = YES;
+        card.matched = YES;
+    } else {
+        self.score -= COST_TO_CHOOSE;
+        bestMatch.chosen = NO;
+    }
+    card.chosen = YES;
 }
 
 - (instancetype) init
